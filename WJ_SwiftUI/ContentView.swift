@@ -10,8 +10,36 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello World")
-    }
+            NavigationView {
+                List {
+                    Text("用‘+’实现文本拼接：")
+                    +
+                    Text("SwiftUI  ")
+                        .font(.largeTitle)//标题样式
+                        .foregroundColor(.orange)
+                        .kerning(1)//字符间距
+                        .baselineOffset(10)
+                        .strikethrough(true, color: .red)
+                    +
+                    Text("is  ")
+                        .font(.subheadline)
+                        .fontWeight(.black)
+
+                        .foregroundColor(.blue)
+                        .underline(true, color: .red)
+                        .tracking(1)
+                    +
+                    Text("awesome")
+                        .font(.footnote)
+                        .foregroundColor(.red)
+    //                Spacer()
+                }
+                .navigationBarTitle("Menu", displayMode: NavigationBarItem.TitleDisplayMode.automatic)
+            }
+           
+            
+            
+        }
 }
 
 struct ContentView_Previews: PreviewProvider {
