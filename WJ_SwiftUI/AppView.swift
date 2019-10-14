@@ -22,7 +22,7 @@ struct AppView: View {
     var body: some View {
         //TabView提供了与的等效功能UITabBarController
         TabView(selection: $selectedView) {
-            HomeView()
+            RespondEevent()
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("First")

@@ -23,11 +23,9 @@ struct HomeView: View {
                     }
             HStack {
                 Text("You selected : ")
-                    .font(.largeTitle)
                     .fontWeight(.bold)
                 +
                 Text("\(colors[selectedColor])")
-                    .font(.title)
                     .foregroundColor(.red)
             }
 //            HStack {
