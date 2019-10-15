@@ -15,24 +15,16 @@ struct HomeView: View {
     @State private var selectedColor = 0
     
     var body: some View {
-        VStack (alignment: .leading){
-            Picker(selection: $selectedColor, label: Text("请选择你喜欢的颜色")) {
-                        ForEach (0 ..< colors.count) {
-                            Text(self.colors[$0])
-                        }
-                    }
-            HStack {
-                Text("You selected : ")
-                    .fontWeight(.bold)
-                +
-                Text("\(colors[selectedColor])")
-                    .foregroundColor(.red)
+        VStack {
+            Picker(selection: $selectedColor, label: Text("选择颜色")) {
+                ForEach (0 ..< colors.count) {
+                    Text(self.colors[$0])
+                }
             }
-//            HStack {
-//                
-//            }
-            Spacer()
-        }.offset(x: 5, y: 0)
+            Text("You selected : \(colors[selectedColor])")
+        }
+        .padding()
+//        .offset(x: 5, y: 0)
         
     }
 }

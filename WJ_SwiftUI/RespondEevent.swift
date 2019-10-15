@@ -15,12 +15,22 @@ struct RespondEevent: View {
     @State private var name: String = ""//有值时为默认文字， 为空字符串时是占位文字
     @State private var password: String = ""
     @State private var celsius: Double = 0
-    var colors = ["Red", "Green", "Blue", "Tartan"]
+   
+    let colors: [Color] = [.red,.gray,.green,.blue,.orange,.yellow,.pink,.purple,.primary,.secondary]
     @State private var selectedColor = 0
     
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }
+    @State private var birthDate = Date()
+    @State private var age = 18
+
     var body: some View {
           NavigationView {
             List {
+                
                 VStack (alignment: .leading, spacing: 2){
                     Toggle(isOn: $showGreeting) {
                        Text("Show welcome message")
@@ -29,7 +39,7 @@ struct RespondEevent: View {
                        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
                     }
                 }
-                
+
                 VStack(alignment: .leading, spacing: 2) {
                     Button(action: {
                         self.showDetails.toggle()
@@ -42,53 +52,72 @@ struct RespondEevent: View {
                         Image("mexican-mocha")
                     }
                 }
-                
+        //Slider
+                VStack {
+                //value：Double将其绑定到的内容。
+                //in：滑块的范围。
+                //step：移动滑块时要更改多少值。
+                    Slider(value: $celsius, in: -100...100, step: 0.1)
+                    Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
+                }
+//
                 NavigationLink(destination: Text("Detail view here")) {
                     Image("full-english-thumb")
                             .renderingMode(.original)
                 }.buttonStyle(PlainButtonStyle())
-                
-                VStack {
-                    HStack {
-                         TextField("Enter your name", text: $name)
-                            .background(Color.red)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                         Spacer()
-                        if !name.isEmpty {
-                             Text("Hello, \(name)!")
-                                .background(Color.yellow)
-                        }
-                        
-                    }.background(Color.blue)
-                    
-                    HStack {
-                        SecureField("Enter a password", text: $password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Text("You entered: \(password)")
+
+                VStack (spacing: 5){
+                    TextField("Enter your name", text: $name)
+                        .background(Color.red)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                     Spacer()
+                    if !name.isEmpty {
+                         Text("Hello, \(name)!")
                             .background(Color.yellow)
-                        
-                        
-                    }.background(Color.blue)
-                }
-                VStack {
-                    //value：Double将其绑定到的内容。
-                    //in：滑块的范围。
-                    //step：移动滑块时要更改多少值。
-                    Slider(value: $celsius, in: -100...100, step: 0.1)
-                    Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
-                }
-                VStack {
-                    Picker(selection: $selectedColor, label: Text("选择颜色")) {
-                        ForEach (0 ..< colors.count) {
-                            Text(self.colors[$0])
-                        }
                     }
-                    Text("You selected: \(colors[selectedColor])")
+                    SecureField("Enter a password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Text("You entered: \(password)")
+                        .background(Color.yellow)
+                }
+
+                VStack {
+                    Stepper("Enter your age", value: $age, in: 0...88)
+                    
+                    Stepper("输入年龄", onIncrement: {
+                        self.age += 1
+                        print("Adding to age")
+                    }, onDecrement: {
+                        self.age -= 1
+                        print("Subtracting from age")
+                    })
+                    Text("Your age is \(age)")
+                }
+//                Section(header:Text("点击、双击手势")){
+//                    Text("Tap me!")
+//                        .onTapGesture {
+//                            print("Tapped!")
+//                        }
+//                }
+                Section(header: Text("Picker")) {
+                    NavigationLink(destination:LearnPickerView()) {
+                        Text("Picker")
+                    }.buttonStyle(PlainButtonStyle())
+                }
+                Section(header:Text("GeometryReader 及labelsHidden()的使用")) {
+                    NavigationLink(destination:GeometryReaderView()) {
+                        Text("使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签")
+                    }.buttonStyle(PlainButtonStyle())
                 }
             }
-            .padding()
             .navigationBarTitle("响应事件 @State", displayMode: .inline)
-        }
+          }.onAppear {
+            //viewDidAppear()
+             print("RespondEevent appeared!")
+          }.onDisappear {
+            //viewDidDisappear()
+            print("RespondEevent disappeared!")
+          }
     }
 }
 
