@@ -27,7 +27,7 @@ struct AppView: View {
                     Image(systemName: "list.dash")
                     Text("First")
                 }.tag(0)
-            TestView()
+            ListView()
                 .tabItem {
                     Image(systemName: "square.and.pencil")
                     Text("Second")

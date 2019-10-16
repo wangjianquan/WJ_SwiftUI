@@ -7,7 +7,7 @@
 //
 
 //提示：由于表单中的选择器具有这种导航行为，因此将它们包装NavigationView在iOS 上很重要，否则您会发现点击它们不起作用。
-//如果要禁用此行为，则可以通过使用.pickerStyle(WheelPickerStyle())修饰符来强制选择器采用其常规样式，如下所示：
+//如果要禁用此行为，则可以通过使用.pickerStyle(WheelPickerStyle())修饰符来强制选择器采用其常规样式
 import SwiftUI
 
 struct LearnPickerView: View {
@@ -43,6 +43,7 @@ struct LearnPickerView: View {
                                 .foregroundColor(self.colors[$0])
                         }
                     }
+//                    .pickerStyle(WheelPickerStyle())
                     Text("You selected : ")
                         .fontWeight(.bold)
                     +
@@ -56,7 +57,7 @@ struct LearnPickerView: View {
                        //in: ...Date():当前日期之前可选 或者 Date()...：当前日期以后可选
                        DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
                            Text("日期")
-                       }
+                    }
                        Text("Date is \(birthDate, formatter: dateFormatter)")
                    }
                }

@@ -61,7 +61,6 @@ struct TextTestView: View {
                 Text("This is an extremely long text string that will never fit even the widest of Phones")
                     .underline(true, color: .white)
                     .kerning(1)
-                    .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .background(RadialGradient(gradient: Gradient(colors: colors), center: .center, startRadius: 20, endRadius: 100))
 
@@ -86,7 +85,7 @@ struct TextTestView: View {
                         .fill(Color.red)
                         .frame(width: 200, height: 200))
                         .clipped()
-                
+                                
                 Text("用‘+’实现文本拼接：")
                 +
                 Text("SwiftUI  ")
@@ -108,7 +107,54 @@ struct TextTestView: View {
                 Text("awesome")
                     .font(.footnote)
                     .foregroundColor(.red)
+                    
+                HStack {
+                    Text("border")
+                        .padding()
+                        .border(Color.red, width: 4)
+                    Text("圆角")
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.blue, lineWidth: 4)
+                        )
+                    Text("阴影1")
+                        .padding()
+                        .shadow(color: .red, radius: 5, x: 20, y: 10)
+                        .border(Color.red, width: 4)
+                    Text("阴影2")
+                        .padding()
+                        .border(Color.red, width: 4)
+                        .shadow(color: .red, radius: 5, x: 20, y: 10)
                 }
+                
+                HStack {
+                    Button(action: {
+                        print("Button tapped")
+                    }) {
+                        Image(systemName: "bolt.fill")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.green)
+                            .clipShape(Circle())
+                    }
+                    Button(action: {
+                        print("Button tapped")
+                    }) {
+                        Image(systemName: "bolt.fill")
+                            .foregroundColor(.white)
+                            .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                            .background(Color.green)
+                            .clipShape(Capsule())
+                    }
+                }
+                
+                Text("Up we go")
+//                    .rotationEffect(.degrees(-90))
+                    .rotationEffect(.radians(.pi))
+
+            }
+                
             .navigationBarTitle("Text相关", displayMode: .inline)
         }
         

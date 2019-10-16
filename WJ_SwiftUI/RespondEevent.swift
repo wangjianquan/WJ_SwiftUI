@@ -10,6 +10,9 @@ import SwiftUI
 
 struct RespondEevent: View {
     
+    @State private var rotation = 0.0
+    @State private var showingSheet = false
+    @State private var showingAlert = false
     @State private var showGreeting = true
     @State private var showDetails = false
     @State private var name: String = ""//有值时为默认文字， 为空字符串时是占位文字
@@ -31,8 +34,8 @@ struct RespondEevent: View {
           NavigationView {
             List {
                 
-                VStack (alignment: .leading, spacing: 2){
-                    Toggle(isOn: $showGreeting) {
+                VStack (alignment: .leading, spacing: 2.0){
+                    Toggle(isOn: $showGreeting.animation()) {
                        Text("Show welcome message")
                     }
                     if showGreeting {
@@ -40,18 +43,23 @@ struct RespondEevent: View {
                     }
                 }
 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: 2.0) {
                     Button(action: {
                         self.showDetails.toggle()
                     }) {
                         Text("Login Button")
                             .background(Color.red)
-                            .frame(width: 150, height: 45, alignment: .center)
-                    }.background(Color.gray)
+                            .frame(width: 120, height: 45, alignment: .bottomTrailing)
+                    }
+                    .frame(width: 120, height: 45)
+                    .background(Color.gray)
                     if showDetails {
                         Image("mexican-mocha")
                     }
                 }
+                
+                 
+                
         //Slider
                 VStack {
                 //value：Double将其绑定到的内容。
@@ -59,11 +67,18 @@ struct RespondEevent: View {
                 //step：移动滑块时要更改多少值。
                     Slider(value: $celsius, in: -100...100, step: 0.1)
                     Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
+                        .rotationEffect(.degress(rotation))
                 }
 //
-                NavigationLink(destination: Text("Detail view here")) {
+                NavigationLink(destination: TestView()) {
                     Image("full-english-thumb")
                             .renderingMode(.original)
+                    Text("Alert,Action")
+                        .padding()//注意padding()的顺序
+                        .background(Color.black)
+                        .foregroundColor(.white)
+                    
+
                 }.buttonStyle(PlainButtonStyle())
 
                 VStack (spacing: 5){
@@ -83,7 +98,7 @@ struct RespondEevent: View {
 
                 VStack {
                     Stepper("Enter your age", value: $age, in: 0...88)
-                    
+
                     Stepper("输入年龄", onIncrement: {
                         self.age += 1
                         print("Adding to age")
@@ -111,6 +126,7 @@ struct RespondEevent: View {
                 }
             }
             .navigationBarTitle("响应事件 @State", displayMode: .inline)
+//          .navigationBari
           }.onAppear {
             //viewDidAppear()
              print("RespondEevent appeared!")

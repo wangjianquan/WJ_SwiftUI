@@ -13,18 +13,27 @@ struct HomeView: View {
     var colors = ["gray","red","green","blue","orange","yellow","pink","purple","primary","secondary"]
 
     @State private var selectedColor = 0
-    
+    @State private var rotation = 0.0
+
     var body: some View {
         VStack {
-            Picker(selection: $selectedColor, label: Text("选择颜色")) {
-                ForEach (0 ..< colors.count) {
-                    Text(self.colors[$0])
-                }
-            }
-            Text("You selected : \(colors[selectedColor])")
+            Text("Forecast: Sun")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.red)
+                .padding()
+                .background(Color.orange)
+                .padding()
+                .background(Color.yellow)
+            
+            Slider(value: $rotation, in: 0...360, step: 1.0)
+            Text("Up we go")
+                .rotationEffect(.degrees(rotation))
+                .rotationEffect(.degrees(rotation), anchor: .topLeading)
+
         }
-        .padding()
-//        .offset(x: 5, y: 0)
+       
         
     }
 }

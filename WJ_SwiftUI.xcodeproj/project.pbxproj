@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D45C6BA2356CE9A00F84E24 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D45C6B92356CE9A00F84E24 /* FormView.swift */; };
 		5D5B08EC2355A9EB0042448F /* LearnPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B08EB2355A9EB0042448F /* LearnPickerView.swift */; };
 		5D5B08EF2355CEE20042448F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B08EE2355CEE20042448F /* ListView.swift */; };
 		5D6A6A1123541AD1006512DF /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A6A1023541AD1006512DF /* LayoutView.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D45C6B92356CE9A00F84E24 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		5D5B08EB2355A9EB0042448F /* LearnPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnPickerView.swift; sourceTree = "<group>"; };
 		5D5B08EE2355CEE20042448F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		5D6A6A1023541AD1006512DF /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				5D6A6A1223546865006512DF /* GeometryReaderView.swift */,
 				5D6A6A162354726D006512DF /* RespondEevent.swift */,
 				5D5B08EB2355A9EB0042448F /* LearnPickerView.swift */,
+				5D45C6B92356CE9A00F84E24 /* FormView.swift */,
 				5DA9D5192351B4BF00A6AA8B /* Assets.xcassets */,
 				5DA9D51E2351B4BF00A6AA8B /* LaunchScreen.storyboard */,
 				5DA9D5212351B4BF00A6AA8B /* Info.plist */,
@@ -320,6 +323,7 @@
 				5D6A6A172354726D006512DF /* RespondEevent.swift in Sources */,
 				5DA9D5462351B61600A6AA8B /* HomeView.swift in Sources */,
 				5DA9D54A2351B63A00A6AA8B /* ProfileView.swift in Sources */,
+				5D45C6BA2356CE9A00F84E24 /* FormView.swift in Sources */,
 				5DA9D5182351B4B900A6AA8B /* ContentView.swift in Sources */,
 				5D5B08EC2355A9EB0042448F /* LearnPickerView.swift in Sources */,
 			);
