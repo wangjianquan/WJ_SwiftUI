@@ -43,6 +43,8 @@ struct TextTestView: View {
     var body: some View {
         NavigationView{
             List {
+                
+                
             Text("默认情况下，文本视图会根据需要自动换行，但是如果您希望限制它们可以使用的行数，则应添加lineLimit修饰符")
                     .font(.system(size: 17))
                     .fontWeight(.bold)
@@ -148,10 +150,17 @@ struct TextTestView: View {
                             .clipShape(Capsule())
                     }
                 }
-                
-                Text("Up we go")
-//                    .rotationEffect(.degrees(-90))
-                    .rotationEffect(.radians(.pi))
+                                                
+                HStack {
+                    Text(".cornerRadius, .opacity")
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(25)
+                        .opacity(0.5)
+                    
+                    Text("高斯模糊 .blur")
+                        .blur(radius: 2)
+                }
 
             }
                 

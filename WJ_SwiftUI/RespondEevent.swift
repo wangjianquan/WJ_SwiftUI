@@ -34,6 +34,7 @@ struct RespondEevent: View {
           NavigationView {
             List {
                 
+                
                 VStack (alignment: .leading, spacing: 2.0){
                     Toggle(isOn: $showGreeting.animation()) {
                        Text("Show welcome message")
@@ -58,18 +59,14 @@ struct RespondEevent: View {
                     }
                 }
                 
-                 
-                
-        //Slider
                 VStack {
                 //value：Double将其绑定到的内容。
                 //in：滑块的范围。
                 //step：移动滑块时要更改多少值。
                     Slider(value: $celsius, in: -100...100, step: 0.1)
                     Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
-                        .rotationEffect(.degress(rotation))
                 }
-//
+
                 NavigationLink(destination: TestView()) {
                     Image("full-english-thumb")
                             .renderingMode(.original)
@@ -77,10 +74,9 @@ struct RespondEevent: View {
                         .padding()//注意padding()的顺序
                         .background(Color.black)
                         .foregroundColor(.white)
-                    
-
                 }.buttonStyle(PlainButtonStyle())
-
+                
+                
                 VStack (spacing: 5){
                     TextField("Enter your name", text: $name)
                         .background(Color.red)
@@ -108,22 +104,25 @@ struct RespondEevent: View {
                     })
                     Text("Your age is \(age)")
                 }
-//                Section(header:Text("点击、双击手势")){
-//                    Text("Tap me!")
-//                        .onTapGesture {
-//                            print("Tapped!")
-//                        }
-//                }
+//
                 Section(header: Text("Picker")) {
                     NavigationLink(destination:LearnPickerView()) {
                         Text("Picker")
                     }.buttonStyle(PlainButtonStyle())
                 }
+//
                 Section(header:Text("GeometryReader 及labelsHidden()的使用")) {
                     NavigationLink(destination:GeometryReaderView()) {
                         Text("使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签")
                     }.buttonStyle(PlainButtonStyle())
                 }
+               
+                Section(header:Text("Image")) {
+                    NavigationLink(destination:ImageTestView()) {
+                        Text("Image相关")
+                    }.buttonStyle(PlainButtonStyle())
+                }
+                
             }
             .navigationBarTitle("响应事件 @State", displayMode: .inline)
 //          .navigationBari
@@ -132,7 +131,7 @@ struct RespondEevent: View {
              print("RespondEevent appeared!")
           }.onDisappear {
             //viewDidDisappear()
-            print("RespondEevent disappeared!")
+             print("RespondEevent disappeared!")
           }
     }
 }

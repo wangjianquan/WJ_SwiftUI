@@ -15,8 +15,19 @@ struct ImageTestView: View {
     var body: some View {
         
         List{
+            ZStack {
+                Image("full-english")
+                Image("all-out-donuts-thumb")
+                    .blendMode(.multiply)
+            }
+            Image("full-english")
+                .blur(radius: 10)
             
             Image("turtlerock")
+                .resizable()
+                .frame(width: 300, height: 300)
+                .mask(Text("SWIFT!")
+                    .font(Font.system(size: 66).weight(.black)))
             Image("all-out-donuts-thumb")
                 //图像平铺
                 .resizable(resizingMode: .tile)
@@ -31,12 +42,7 @@ struct ImageTestView: View {
                 .foregroundColor(.blue)
                 .font(.largeTitle)
             
-            Rectangle()
-                .fill(Color.red)
-                .frame(width: 80, height: 80, alignment: .center)
-            Circle()
-                .fill(Color.blue)
-                .frame(width: 50, height: 50)
+           
 //            Spacer()
         }
     }

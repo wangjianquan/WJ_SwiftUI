@@ -117,20 +117,20 @@ struct LayoutView: View {
     
 //8.
 //该.id(: \.self)部分是必需的，以便SwiftUI可以唯一地标识数组中的每个元素
-//        VStack(alignment: .leading) {
-//            ForEach((1...10).reversed(), id: \.self) {
-//                Text("\($0)...")
-//            }
-//            Text("Ready or not, here I come!")
-//            Spacer()
-//                .frame(height: 15)
-//            ForEach(colors, id: \.self) { color in
-//                Text(color.description.capitalized)
-//                .foregroundColor(color)
-//                .padding()
-//                    .background(Color.black)
-//            }
-//        }
+        VStack(alignment: .leading) {
+            ForEach((1...10).reversed(), id: \.self) {
+                Text("\($0)...")
+            }
+            Text("Ready or not, here I come!")
+            Spacer()
+                .frame(height: 15)
+            ForEach(colors, id: \.self) { color in
+                Text(color.description.capitalized)
+                .foregroundColor(color)
+                .padding()
+                    .background(Color.black)
+            }
+        }
         
         
     //9. compact regular
@@ -151,21 +151,7 @@ struct LayoutView: View {
 //                .background(Color.gray)
 //        }
         
-//11. GeometryReader
-        GeometryReader { geometry in
-            HStack (spacing:0){
-                Text("left")
-                    .frame(width: geometry.size.width/3, height: geometry.size.height/2)
-                    .background(Color.blue)
-                Text("center")
-                    .frame(width: geometry.size.width/3, height: geometry.size.height/5)
-                    .background(Color.red)
-                Text("right")
-                    .frame(width: geometry.size.width/3, height: 50)
-                    .background(Color.orange)
-            }
-            
-        }
+
     }
 }
 

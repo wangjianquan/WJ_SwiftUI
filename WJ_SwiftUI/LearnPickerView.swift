@@ -25,7 +25,7 @@ struct LearnPickerView: View {
     var body: some View {
        
         NavigationView {
-             Form {
+            VStack { //Form
                 VStack {
                     Picker(selection: $favoriteColor, label: Text("favorite color")) {
                         ForEach(0 ..< colors.count) { index in

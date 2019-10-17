@@ -30,12 +30,12 @@ struct AppView: View {
             ListView()
                 .tabItem {
                     Image(systemName: "square.and.pencil")
-                    Text("Second")
+                    Text("列表")
                 }.tag(1)
             TextTestView()
                 .tabItem {
                     Image(systemName: "1.circle")
-                    Text("Third")
+                    Text("Text")
                 }.tag(2)
             ProfileView()
                 .tabItem {

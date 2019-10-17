@@ -16,6 +16,7 @@ struct TestView: View {
 
     var body: some View {
         VStack (spacing:15) {
+            
             Button(action: {
                 self.showingDetail.toggle()
             }) {
@@ -45,6 +46,9 @@ struct TestView: View {
                    print("Deleting...")
                 }, secondaryButton: .cancel())
             }
+            
+            
+            
         }.padding()
     }
 }
