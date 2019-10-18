@@ -31,6 +31,10 @@ struct TextTestView: View {
             3. AngularGradient 圆锥渐变
      */
     
+    //将视图存储为属性
+
+    
+    let propertiesText = Text("propertiesText").font(.largeTitle)
     
     static let taskDateFormat : DateFormatter = {
         let formatter = DateFormatter()
@@ -44,8 +48,7 @@ struct TextTestView: View {
         NavigationView{
             List {
                 
-                
-            Text("默认情况下，文本视图会根据需要自动换行，但是如果您希望限制它们可以使用的行数，则应添加lineLimit修饰符")
+                Text("文本视图默认会自动换行，限制行数则添加lineLimit修饰符")
                     .font(.system(size: 17))
                     .fontWeight(.bold)
                     .background(LinearGradient(gradient: Gradient(colors: [.blue, .green]), startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -53,7 +56,6 @@ struct TextTestView: View {
                     .lineLimit(3)
                     .lineSpacing(10)
                     .multilineTextAlignment(.center)
-                
                 Text("This is an extremely long textbstring that will never fit even the widest of Phones")
                     .lineLimit(1)
                     .truncationMode(.middle)

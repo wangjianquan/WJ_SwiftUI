@@ -15,32 +15,64 @@ struct ImageTestView: View {
     var body: some View {
         
         List{
-            ZStack {
+            Section(header: Text("动态调整视图的对比度 .contrast(10)//0.0:不会产生对比度(纯灰色图像)，1.0:原始图像;>1.0都会增加对比度。")) {
                 Image("full-english")
-                Image("all-out-donuts-thumb")
-                    .blendMode(.multiply)
+                    .resizable()
+                    .contrast(10)
             }
-            Image("full-english")
-                .blur(radius: 10)
             
-            Image("turtlerock")
-                .resizable()
-                .frame(width: 300, height: 300)
-                .mask(Text("SWIFT!")
-                    .font(Font.system(size: 66).weight(.black)))
-            Image("all-out-donuts-thumb")
-                //图像平铺
-                .resizable(resizingMode: .tile)
+            Section(header: Text("饱和度调整.saturation(0.5)// 0.0:全灰色;1.0原始颜色")) {
+                Image("full-english")
+                    .resizable()
+                    .saturation(0.5)
+            }
+            Section(header: Text("视图着色")) {
+                Image("full-english")
+                    .resizable()
+                    .colorMultiply(.red)
+            }
+            
+            Section(header: Text("Image 融合(.blendMode())")){
+                ZStack {
+                    Image("full-english")
+                        .resizable()
+                    Image("turtlerock")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .blendMode(.multiply)
+                }
+            }
 
-            Image("super-sundae-thumb")
-                //平铺图像的一部分
-                .resizable(capInsets: EdgeInsets(top: 20, leading: 10, bottom: 10, trailing: 20), resizingMode: .tile)
-
+            Section(header: Text("高斯模糊 (.blur())").blur(radius: 1)){
+                Image("full-english")
+                    .resizable()
+                    .blur(radius: 5)
+            }
+            Section(header:Text("视图遮罩 .mask()")){
+                Image("turtlerock")
+                    .resizable()
+                    .mask(Text("遮罩.mask()")
+                        .font(Font.system(size: 80).weight(.regular))
+                )
+            }
+            
+            Section(header:Text("图像平铺 .resizable(resizingMode: .tile)")){
+               Image("all-out-donuts-thumb")
+                    .resizable(resizingMode: .tile)
+            }
+            Section(header:Text("平铺图像的一部分 .resizable(capInsets: )")){
+               Image("super-sundae-thumb")
+                .resizable(capInsets: EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5), resizingMode: .tile)
                 .aspectRatio(contentMode: .fill)
                 .padding()
-            Image(systemName: "cloud.heavyrain.fill")
+            }
+
+            Section(header:Text("平铺图像的一部分 .resizable(capInsets: )")){
+               Image(systemName: "cloud.heavyrain.fill")
                 .foregroundColor(.blue)
                 .font(.largeTitle)
+            }
+            
             
            
 //            Spacer()

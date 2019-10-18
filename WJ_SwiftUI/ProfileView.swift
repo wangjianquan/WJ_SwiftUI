@@ -8,63 +8,99 @@
 
 import SwiftUI
 
+struct User {
+    var name           : String
+    var jobTitle       : String
+    var emailAddress   : String
+    var profilePicture : String
+}
+
+struct ProfilePicture: View {
+    var imageName: String
+
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .frame(width: 100, height: 100)
+            .clipShape(Circle())
+    }
+}
+
+struct EmailAddress: View {
+    var address: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "envelope")
+            Text(address)
+        }
+    }
+}
+
+struct UserDetails: View {
+    var user: User
+    
+    var body: some View {
+        VStack (alignment: .leading, spacing: 0) {
+            Text(user.name)
+                .font(.largeTitle)
+                .foregroundColor(.primary)
+            Text(user.jobTitle)
+                .foregroundColor(.secondary)
+            EmailAddress(address: user.emailAddress)
+        }
+    }
+}
+
+struct UserView: View {
+    var user: User
+
+    var body: some View {
+        
+        HStack {
+            ProfilePicture(imageName: user.profilePicture)
+            Spacer()
+            UserDetails(user: user)
+        }
+        .padding()
+    }
+}
+
 struct ProfileView: View {
    
+    let user = User(name: "Jack", jobTitle: "teacher", emailAddress: "939730129@qq.com", profilePicture: "strawberry-cooler-thumb")
+    
     var body: some View {
         NavigationView{
-            VStack {
-                Group {
-                    Text("Line1")
-                    Text("Line2")
-                    Text("Line3")
-                    Text("Line4")
-                    Text("Line5")
-                    Text("Line6")
+                VStack {
+                    UserView(user: self.user)
+                        .frame(height: 140)
+                        .shadow(radius: 5)
+//                        .background(Color.blue)
+                    List {
+                        ForEach (0 ..< 23) {
+                            Text("\($0)")
+                        }
+                    }
+
                 }
 
-                Group {
-                    Text("Line7")
-                    Text("Line8")
-                    Text("Line9")
-                    Text("Line10")
-                    Text("Line11")
-                }
-                ZStack(alignment: .top) {
-                    
-                    Rectangle()
-                        .fill(Color.black)
-                        .frame(width: 200, height: 200)
-
-                    RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(Color.red)
-                        .frame(width: 150, height: 150)
-
-                    Capsule()
-                        .fill(Color.green)
-                        .frame(width: 100, height: 50)
-
-                    Ellipse()
-                        .fill(Color.blue)
-                        .frame(width: 80, height: 40)
-
-                    
-                    Circle()
-                        .fill(Color.yellow)
-                        .frame(width: 35, height: 35)
-                }
-
-            }
-            .navigationBarTitle("SwiftUI内置的形状", displayMode: .inline)
-            .navigationBarItems(trailing:
-                HStack {
-                   Button("About") {
-                       print("About tapped!")
-                   }
-
-                   Button("Help") {
-                       print("Help tapped!")
-                   }
-               })
+            .navigationBarTitle("个人中心", displayMode: .inline)
+            .navigationBarItems(leading: Button(action: {
+                
+                }) {
+                    Image(systemName: "list.dash")
+                }, trailing:
+                    HStack {
+                        Button("About") {
+                            print("About tapped!")
+                        }
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "list.dash")
+                        }
+                })
             }
     }
 }

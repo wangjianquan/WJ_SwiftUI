@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+
+
+
+
 struct RespondEevent: View {
     
     @State private var rotation = 0.0
@@ -33,17 +37,16 @@ struct RespondEevent: View {
     var body: some View {
           NavigationView {
             List {
-                
-                
                 VStack (alignment: .leading, spacing: 2.0){
-                    Toggle(isOn: $showGreeting.animation()) {
+                    Toggle(isOn: $showGreeting.animation(.spring())) {
                        Text("Show welcome message")
                     }
                     if showGreeting {
                        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
                     }
                 }
-
+                
+                
                 VStack(alignment: .leading, spacing: 2.0) {
                     Button(action: {
                         self.showDetails.toggle()
@@ -58,7 +61,7 @@ struct RespondEevent: View {
                         Image("mexican-mocha")
                     }
                 }
-                
+
                 VStack {
                 //value：Double将其绑定到的内容。
                 //in：滑块的范围。
@@ -66,23 +69,14 @@ struct RespondEevent: View {
                     Slider(value: $celsius, in: -100...100, step: 0.1)
                     Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
                 }
-
-                NavigationLink(destination: TestView()) {
-                    Image("full-english-thumb")
-                            .renderingMode(.original)
-                    Text("Alert,Action")
-                        .padding()//注意padding()的顺序
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                }.buttonStyle(PlainButtonStyle())
-                
-                
+ 
                 VStack (spacing: 5){
                     TextField("Enter your name", text: $name)
                         .background(Color.red)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                     Spacer()
+                    Spacer()
                     if !name.isEmpty {
+                        
                          Text("Hello, \(name)!")
                             .background(Color.yellow)
                     }
@@ -104,29 +98,59 @@ struct RespondEevent: View {
                     })
                     Text("Your age is \(age)")
                 }
-//
-                Section(header: Text("Picker")) {
-                    NavigationLink(destination:LearnPickerView()) {
-                        Text("Picker")
-                    }.buttonStyle(PlainButtonStyle())
-                }
-//
-                Section(header:Text("GeometryReader 及labelsHidden()的使用")) {
-                    NavigationLink(destination:GeometryReaderView()) {
-                        Text("使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签")
-                    }.buttonStyle(PlainButtonStyle())
-                }
-               
+                
                 Section(header:Text("Image")) {
                     NavigationLink(destination:ImageTestView()) {
                         Text("Image相关")
                     }.buttonStyle(PlainButtonStyle())
                 }
                 
+                Section(header: Text("Picker")) {
+                     NavigationLink(destination:LearnPickerView()) {
+                         Text("Picker")
+                     }.buttonStyle(PlainButtonStyle())
+                 }
+
+                 Section(header:Text("GeometryReader 及labelsHidden()的使用")) {
+                     NavigationLink(destination:GeometryReaderView()) {
+                         Text("使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签")
+                     }.buttonStyle(PlainButtonStyle())
+                 }
+                
+                 Section(header:Text("Alert,ActionSheet")){
+                     NavigationLink(destination: TestView()) {
+                         Image("full-english-thumb")
+                                 .renderingMode(.original)
+                         Text("Alert,Action")
+                             .padding()//注意padding()的顺序
+                             .background(Color.black)
+                             .foregroundColor(.white)
+                     }.buttonStyle(PlainButtonStyle())
+                 }
+                 
+                 Section(header:Text("DrawingView")) {
+                     NavigationLink(destination:DrawingView()) {
+                         Text("DrawingView")
+                     }.buttonStyle(PlainButtonStyle())
+                 }
+                 
+                 Section(header:Text("Animation")) {
+                     NavigationLink(destination:LearnAnimation()) {
+                         Text("LearnAnimation")
+                     }.buttonStyle(PlainButtonStyle())
+                 }
+                
+                 Section(header:Text("Transform")) {
+                     NavigationLink(destination:LearningTransform()) {
+                         Text("LearningTransform")
+                     }.buttonStyle(PlainButtonStyle())
+                 }
+                
+                                
             }
             .navigationBarTitle("响应事件 @State", displayMode: .inline)
-//          .navigationBari
-          }.onAppear {
+          }
+          .onAppear {
             //viewDidAppear()
              print("RespondEevent appeared!")
           }.onDisappear {
