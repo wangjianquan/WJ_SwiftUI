@@ -25,7 +25,34 @@ struct FormView: View {
                     }
                 }
             }
+            Section {
+                Button(action: {
+                    print("Button tapped")
+                }) {
+                    Text("Welcome")
+                        .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200)
+                        .font(.largeTitle)
+                }
+                Text("Please log in")
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .background(Color.red)
+            }
+
+            // 切换iPad和iPhone模拟器查看该效果
+            AdaptiveStack (spacing:5) {
+                Text("Horizontal when there's lots of space")
+                    .background(Color.red)
+                Text("but")
+                    .background(Color.yellow)
+                Text("Vertical when space is restricted")
+                    .background(Color.blue)
+                    .edgesIgnoringSafeArea(.trailing)
+
+            }
         }
+        
     }
 }
 

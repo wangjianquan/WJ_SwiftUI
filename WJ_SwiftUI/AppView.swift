@@ -42,6 +42,11 @@ struct AppView: View {
                     Image(systemName: "2.circle")
                     Text("Third")
                 }.tag(3)
+            LayoutView()
+                .tabItem {
+                    Image(systemName: "3.circle")
+                    Text("Layout")
+                }.tag(4)
         }
     }
 }

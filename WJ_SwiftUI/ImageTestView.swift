@@ -26,6 +26,7 @@ struct ImageTestView: View {
                     .resizable()
                     .saturation(0.5)
             }
+            
             Section(header: Text("视图着色")) {
                 Image("full-english")
                     .resizable()
@@ -48,11 +49,11 @@ struct ImageTestView: View {
                     .resizable()
                     .blur(radius: 5)
             }
+            
             Section(header:Text("视图遮罩 .mask()")){
                 Image("turtlerock")
                     .resizable()
-                    .mask(Text("遮罩.mask()")
-                        .font(Font.system(size: 80).weight(.regular))
+                    .mask(Text("遮罩.mask()").font(Font.system(size: 80).weight(.regular))
                 )
             }
             
@@ -60,6 +61,7 @@ struct ImageTestView: View {
                Image("all-out-donuts-thumb")
                     .resizable(resizingMode: .tile)
             }
+            
             Section(header:Text("平铺图像的一部分 .resizable(capInsets: )")){
                Image("super-sundae-thumb")
                 .resizable(capInsets: EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5), resizingMode: .tile)
@@ -73,8 +75,6 @@ struct ImageTestView: View {
                 .font(.largeTitle)
             }
             
-            
-           
 //            Spacer()
         }
     }

@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-
-
-
-
 struct RespondEevent: View {
     
     @State private var rotation = 0.0
@@ -35,128 +31,136 @@ struct RespondEevent: View {
     @State private var age = 18
 
     var body: some View {
-          NavigationView {
+        NavigationView {
+            //SwiftUI中的所有容器都必须返回不超过十个视图
+            //如果需要具有10个以上的视图body,则应该使用 Group
             List {
-                VStack (alignment: .leading, spacing: 2.0){
-                    Toggle(isOn: $showGreeting.animation(.spring())) {
-                       Text("Show welcome message")
+                Group {
+                    Section(header: Text("控件: Toggle 对应 UIKit的UISwitch")) {
+                        VStack(alignment: .leading, spacing: 2.0) {
+                            Toggle(isOn: $showGreeting.animation(.spring())) {
+                               Text("Show welcome message")
+                            }
+                            if showGreeting {
+                               Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+                            }
+                        }
                     }
-                    if showGreeting {
-                       Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+                    
+                    Section(header: Text("控件: Button")) {
+                        VStack(alignment: .center, spacing: 2.0) {
+                            Button(action: {
+                                self.showDetails.toggle()
+                            }) {
+                                Text("Button name")
+                                    .background(Color.red)
+                                    .frame(width: 120, height: 45, alignment: .center)
+                            }
+                            .frame(width: 120, height: 45)
+                            .background(Color.blue)
+                            if showDetails {
+                                Image("mexican-mocha")
+                            }
+                        }
                     }
-                }
-                
-                
-                VStack(alignment: .leading, spacing: 2.0) {
-                    Button(action: {
-                        self.showDetails.toggle()
-                    }) {
-                        Text("Login Button")
-                            .background(Color.red)
-                            .frame(width: 120, height: 45, alignment: .bottomTrailing)
+                    
+                    Section(header: Text("控件: TextField(明文),SecureField(密文)")) {
+                        VStack (alignment: .leading, spacing: 5){
+                            TextField("请输入用户名", text: $name)
+                                .background(Color.red)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            Spacer()
+                            if !name.isEmpty {
+                                Text("用户名, \(name)!")
+                                    .background(Color.yellow)
+                            }
+                            SecureField("请输入密码", text: $password)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            Text("密码: \(password)")
+                                .background(Color.yellow)
+                        }
                     }
-                    .frame(width: 120, height: 45)
-                    .background(Color.gray)
-                    if showDetails {
-                        Image("mexican-mocha")
+
+                    Section(header: Text("控件: Slider")) {
+                        //value：Double将其绑定到的内容。
+                        //in：滑块的范围。
+                        //step：移动滑块时要更改多少值。
+                        Slider(value: $celsius, in: -100...100, step: 0.1)
+                        Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
+                    }
+
+                    Section(header: Text("控件: Stepper")) {
+                        Stepper("Enter your age", value: $age, in: 0...88)
+
+                        Stepper("输入年龄", onIncrement: {
+                            self.age += 1
+                            print("Adding to age")
+                        }, onDecrement: {
+                            self.age -= 1
+                            print("Subtracting from age")
+                        })
+                        Text("Your age is \(age)")
                     }
                 }
 
-                VStack {
-                //value：Double将其绑定到的内容。
-                //in：滑块的范围。
-                //step：移动滑块时要更改多少值。
-                    Slider(value: $celsius, in: -100...100, step: 0.1)
-                    Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
-                }
- 
-                VStack (spacing: 5){
-                    TextField("Enter your name", text: $name)
-                        .background(Color.red)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Spacer()
-                    if !name.isEmpty {
-                        
-                         Text("Hello, \(name)!")
-                            .background(Color.yellow)
+                Group {
+                    Section(header:Text("控件: Image")) {
+                        NavigationLink(destination:ImageTestView()) {
+                            Text("Image相关")
+                        }.buttonStyle(PlainButtonStyle())
                     }
-                    SecureField("Enter a password", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Text("You entered: \(password)")
-                        .background(Color.yellow)
-                }
 
-                VStack {
-                    Stepper("Enter your age", value: $age, in: 0...88)
+                    Section(header: Text("控件: Picker")) {
+                         NavigationLink(destination:LearnPickerView()) {
+                             Text("Picker")
+                         }.buttonStyle(PlainButtonStyle())
+                     }
 
-                    Stepper("输入年龄", onIncrement: {
-                        self.age += 1
-                        print("Adding to age")
-                    }, onDecrement: {
-                        self.age -= 1
-                        print("Subtracting from age")
-                    })
-                    Text("Your age is \(age)")
-                }
-                
-                Section(header:Text("Image")) {
-                    NavigationLink(destination:ImageTestView()) {
-                        Text("Image相关")
-                    }.buttonStyle(PlainButtonStyle())
-                }
-                
-                Section(header: Text("Picker")) {
-                     NavigationLink(destination:LearnPickerView()) {
-                         Text("Picker")
-                     }.buttonStyle(PlainButtonStyle())
-                 }
+                     Section(header:Text("GeometryReader 及labelsHidden()的使用")) {
+                         NavigationLink(destination:GeometryReaderView()) {
+                             Text("使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签")
+                         }.buttonStyle(PlainButtonStyle())
+                     }
 
-                 Section(header:Text("GeometryReader 及labelsHidden()的使用")) {
-                     NavigationLink(destination:GeometryReaderView()) {
-                         Text("使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签")
-                     }.buttonStyle(PlainButtonStyle())
-                 }
-                
-                 Section(header:Text("Alert,ActionSheet")){
-                     NavigationLink(destination: TestView()) {
-                         Image("full-english-thumb")
-                                 .renderingMode(.original)
-                         Text("Alert,Action")
-                             .padding()//注意padding()的顺序
-                             .background(Color.black)
-                             .foregroundColor(.white)
-                     }.buttonStyle(PlainButtonStyle())
-                 }
-                 
-                 Section(header:Text("DrawingView")) {
-                     NavigationLink(destination:DrawingView()) {
-                         Text("DrawingView")
-                     }.buttonStyle(PlainButtonStyle())
-                 }
-                 
-                 Section(header:Text("Animation")) {
-                     NavigationLink(destination:LearnAnimation()) {
-                         Text("LearnAnimation")
-                     }.buttonStyle(PlainButtonStyle())
-                 }
-                
-                 Section(header:Text("Transform")) {
-                     NavigationLink(destination:LearningTransform()) {
-                         Text("LearningTransform")
-                     }.buttonStyle(PlainButtonStyle())
-                 }
-                
-                                
+                     Section(header:Text("控件: Alert,ActionSheet")){
+                         NavigationLink(destination: TestView()) {
+                             Image("full-english-thumb")
+                                     .renderingMode(.original)
+                             Text("Alert,Action")
+                                 .padding()//注意padding()的顺序
+                                 .background(Color.black)
+                                 .foregroundColor(.white)
+                         }.buttonStyle(PlainButtonStyle())
+                     }
+
+                     Section(header:Text("DrawingView")) {
+                         NavigationLink(destination:DrawingView()) {
+                             Text("DrawingView")
+                         }.buttonStyle(PlainButtonStyle())
+                     }
+
+                     Section(header:Text("Animation")) {
+                         NavigationLink(destination:LearnAnimation()) {
+                             Text("LearnAnimation")
+                         }.buttonStyle(PlainButtonStyle())
+                     }
+
+                     Section(header:Text("Transform")) {
+                         NavigationLink(destination:LearningTransform()) {
+                             Text("LearningTransform")
+                         }.buttonStyle(PlainButtonStyle())
+                     }
+                    
+                }
             }
             .navigationBarTitle("响应事件 @State", displayMode: .inline)
-          }
-          .onAppear {
-            //viewDidAppear()
-             print("RespondEevent appeared!")
-          }.onDisappear {
-            //viewDidDisappear()
-             print("RespondEevent disappeared!")
-          }
+        }.onAppear {
+        //viewDidAppear()
+            print("RespondEevent appeared!")
+        }.onDisappear {
+        //viewDidDisappear()
+            print("RespondEevent disappeared!")
+        }
     }
 }
 

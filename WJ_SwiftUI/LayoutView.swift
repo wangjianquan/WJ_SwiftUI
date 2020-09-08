@@ -126,8 +126,8 @@ struct LayoutView: View {
                 .frame(height: 15)
             ForEach(colors, id: \.self) { color in
                 Text(color.description.capitalized)
-                .foregroundColor(color)
-                .padding()
+                    .padding()
+                    .foregroundColor(color)
                     .background(Color.black)
             }
         }

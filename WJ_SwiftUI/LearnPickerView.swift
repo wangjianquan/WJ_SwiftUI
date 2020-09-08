@@ -11,16 +11,18 @@
 import SwiftUI
 
 struct LearnPickerView: View {
-    var colors: [Color] = [.red,.gray,.green,.blue,.orange,.yellow,.pink,.purple]
     @State private var selectedColor = 0
-    
-    var dateFormatter: DateFormatter {
+    @State private var birthDate = Date()
+    @State private var favoriteColor = 0
+
+    var colors: [Color] = [.red,.gray,.green,.blue,.orange,.yellow,.pink,.purple]
+
+    static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         return formatter
     }
-    @State private var birthDate = Date()
-    @State private var favoriteColor = 0
+    
     
     var body: some View {
        
@@ -58,9 +60,9 @@ struct LearnPickerView: View {
                        DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
                            Text("日期")
                     }
-                       Text("Date is \(birthDate, formatter: dateFormatter)")
-                   }
-               }
+                    Text("Date is \(birthDate, formatter: LearnPickerView.dateFormatter)")
+                }
+            }
              .navigationBarTitle("表单 Form", displayMode: .inline)
         }.onAppear {
             print("LearnPickerView appeared!")
