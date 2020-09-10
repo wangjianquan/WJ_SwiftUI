@@ -10,6 +10,8 @@
 		121B0E7825077118008CEE95 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B0E7725077118008CEE95 /* VideoView.swift */; };
 		121B0E7A250786D4008CEE95 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B0E79250786D4008CEE95 /* AdaptiveStack.swift */; };
 		121B0E7C2507935D008CEE95 /* ScrollTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B0E7B2507935D008CEE95 /* ScrollTestView.swift */; };
+		125587E825088A0000433002 /* GridStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125587E725088A0000433002 /* GridStackView.swift */; };
+		12734AE02508B6D100EE6579 /* LearnLazyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12734ADF2508B6D100EE6579 /* LearnLazyGrid.swift */; };
 		5D45C6BA2356CE9A00F84E24 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D45C6B92356CE9A00F84E24 /* FormView.swift */; };
 		5D4E6BE223584FF30094FF10 /* LearningTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E6BE123584FF30094FF10 /* LearningTransform.swift */; };
 		5D5B08EC2355A9EB0042448F /* LearnPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B08EB2355A9EB0042448F /* LearnPickerView.swift */; };
@@ -56,6 +58,8 @@
 		121B0E7725077118008CEE95 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		121B0E79250786D4008CEE95 /* AdaptiveStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStack.swift; sourceTree = "<group>"; };
 		121B0E7B2507935D008CEE95 /* ScrollTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTestView.swift; sourceTree = "<group>"; };
+		125587E725088A0000433002 /* GridStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStackView.swift; sourceTree = "<group>"; };
+		12734ADF2508B6D100EE6579 /* LearnLazyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnLazyGrid.swift; sourceTree = "<group>"; };
 		5D45C6B92356CE9A00F84E24 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		5D4E6BE123584FF30094FF10 /* LearningTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningTransform.swift; sourceTree = "<group>"; };
 		5D5B08EB2355A9EB0042448F /* LearnPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnPickerView.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 				5D45C6B92356CE9A00F84E24 /* FormView.swift */,
 				121B0E79250786D4008CEE95 /* AdaptiveStack.swift */,
 				121B0E7B2507935D008CEE95 /* ScrollTestView.swift */,
+				125587E725088A0000433002 /* GridStackView.swift */,
+				12734ADF2508B6D100EE6579 /* LearnLazyGrid.swift */,
 				5DA9D5192351B4BF00A6AA8B /* Assets.xcassets */,
 				5DA9D51E2351B4BF00A6AA8B /* LaunchScreen.storyboard */,
 				5DA9D5212351B4BF00A6AA8B /* Info.plist */,
@@ -334,6 +340,7 @@
 				5D6A6A1323546865006512DF /* GeometryReaderView.swift in Sources */,
 				5D5B08EF2355CEE20042448F /* ListView.swift in Sources */,
 				5D6A6A1123541AD1006512DF /* LayoutView.swift in Sources */,
+				125587E825088A0000433002 /* GridStackView.swift in Sources */,
 				5DA9D5142351B4B900A6AA8B /* AppDelegate.swift in Sources */,
 				5DA9D5162351B4B900A6AA8B /* SceneDelegate.swift in Sources */,
 				5DA9D54E2351D48200A6AA8B /* TextTestView.swift in Sources */,
@@ -347,6 +354,7 @@
 				5D45C6BA2356CE9A00F84E24 /* FormView.swift in Sources */,
 				5DE2EE7B235998E8000BC4AA /* LearnAnimation.swift in Sources */,
 				5DE2EE79235992DC000BC4AA /* DrawingView.swift in Sources */,
+				12734AE02508B6D100EE6579 /* LearnLazyGrid.swift in Sources */,
 				5DA9D5182351B4B900A6AA8B /* ContentView.swift in Sources */,
 				5D4E6BE223584FF30094FF10 /* LearningTransform.swift in Sources */,
 				5D5B08EC2355A9EB0042448F /* LearnPickerView.swift in Sources */,
@@ -519,7 +527,7 @@
 				DEVELOPMENT_TEAM = KJ48WR2Q9M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WJ_SwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,7 +548,7 @@
 				DEVELOPMENT_TEAM = KJ48WR2Q9M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WJ_SwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

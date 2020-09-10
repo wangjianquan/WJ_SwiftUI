@@ -70,14 +70,14 @@ struct LayoutView: View {
 //        }.background(LinearGradient(gradient: Gradient(colors: [Color.red,.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
         
     //5. ZStack
-//        ZStack(alignment: .bottomLeading) {
-//            Image("turtlerock")
-//            Text("Hacking with Swift")
-//                .font(.footnote)
-//                .background(Color.black)
-//                .foregroundColor(.white)
-//            .offset(x: 5, y: -5)
-//        }
+        ZStack(alignment: .bottomLeading) {
+            Image("turtlerock")
+            Text("Hacking with Swift")
+                .font(.footnote)
+                .background(Color.black)
+                .foregroundColor(.white)
+                .offset(x: 5, y: -5)
+        }
         
 //        VStack {
 //            Text("Home")
@@ -117,20 +117,20 @@ struct LayoutView: View {
     
 //8.
 //该.id(: \.self)部分是必需的，以便SwiftUI可以唯一地标识数组中的每个元素
-        VStack(alignment: .leading) {
-            ForEach((1...10).reversed(), id: \.self) {
-                Text("\($0)...")
-            }
-            Text("Ready or not, here I come!")
-            Spacer()
-                .frame(height: 15)
-            ForEach(colors, id: \.self) { color in
-                Text(color.description.capitalized)
-                    .padding()
-                    .foregroundColor(color)
-                    .background(Color.black)
-            }
-        }
+//        VStack(alignment: .leading) {
+//            ForEach((1...10).reversed(), id: \.self) {
+//                Text("\($0)...")
+//            }
+//            Text("Ready or not, here I come!")
+//            Spacer()
+//                .frame(height: 15)
+//            ForEach(colors, id: \.self) { color in
+//                Text(color.description.capitalized)
+//                    .padding()
+//                    .foregroundColor(color)
+//                    .background(Color.black)
+//            }
+//        }
         
         
     //9. compact regular
