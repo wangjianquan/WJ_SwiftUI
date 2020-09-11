@@ -66,18 +66,24 @@ struct RespondEevent: View {
                     
                     Section(header: Text("控件: TextField(明文),SecureField(密文)")) {
                         VStack (alignment: .leading, spacing: 5){
-                            TextField("请输入用户名", text: $name)
-                                .background(Color.red)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            Spacer()
+                        //如何从TextField读取文本
                             if !name.isEmpty {
-                                Text("用户名, \(name)!")
+                                Text("用户名: \(name)!")
+//                                    .background(Color.yellow)
+                            }
+                            TextField("请输入手机号", text: $name)
+                                .keyboardType(.phonePad)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())//添加边框
+                            
+                            Spacer()
+                            
+                            if !password.isEmpty {
+                                Text("密码: \(password)")
                                     .background(Color.yellow)
                             }
                             SecureField("请输入密码", text: $password)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                            Text("密码: \(password)")
-                                .background(Color.yellow)
+                            
                         }
                     }
 
@@ -150,6 +156,12 @@ struct RespondEevent: View {
                              Text("LearningTransform")
                          }.buttonStyle(PlainButtonStyle())
                      }
+                    Section(header:Text("VideoPlayer")) {
+                        NavigationLink(destination:VideoView()) {
+                            Text("VideoPlayer")
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+                    
                     
                 }
             }

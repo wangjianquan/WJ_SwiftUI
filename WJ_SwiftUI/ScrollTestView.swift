@@ -87,18 +87,31 @@ struct ScrollTestView: View {
 //            } else {
 //            }
 //        })
-        ScrollView {
-            LazyVStack( content: {
-                ForEach(1...1000, id: \.self) { count in
-                    Text("Placeholder \(count)")
-                        .padding()
-                        .background(Color.red)
-
+//        ScrollView(.horizontal) {
+//            LazyHStack( content: {
+//                ForEach(1...1000, id: \.self) { count in
+//                    Text("Placeholder \(count)")
+//                        .padding()
+//                        .background(Color.red)
+//
+//                }
+////                ForEach(1...1000, id: \.self, content: SampleRow.init)
+//
+//            }).background(Color.orange)
+//        }.background(Color.yellow)
+        
+        ScrollView(.vertical, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
+            LazyVStack {
+                ForEach(1...1000, id: \.self) { value in
+                    Spacer().frame(height:1)
+                    Text("Row \(value)")
+                        .frame(width:100,height: 30,alignment: .bottomTrailing)
+                        .background(Color.green)
+//                        .padding(1)
                 }
-//                ForEach(1...1000, id: \.self, content: SampleRow.init)
-
-            })
-        }
+            }.background(Color.blue)
+        }).background(Color.yellow)
+        //4.
     }
 }
 struct SampleRow: View {

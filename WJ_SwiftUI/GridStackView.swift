@@ -36,7 +36,7 @@ struct GridStackView<Content: View>: View {
 struct GridStackView_Previews: PreviewProvider {
     static var previews: some View {
         GridStackView(rows: 4, columns: 4) { (row, col)  in
-//            Image(systemName: "\(row * 4 + col).circle")
+            Image(systemName: "\(row * 4 + col).circle")
 //            Spacer()
 //            Divider()
             Text("R\(row) C\(col)")

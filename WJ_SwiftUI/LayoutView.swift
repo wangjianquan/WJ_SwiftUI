@@ -70,14 +70,14 @@ struct LayoutView: View {
 //        }.background(LinearGradient(gradient: Gradient(colors: [Color.red,.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
         
     //5. ZStack
-        ZStack(alignment: .bottomLeading) {
-            Image("turtlerock")
-            Text("Hacking with Swift")
-                .font(.footnote)
-                .background(Color.black)
-                .foregroundColor(.white)
-                .offset(x: 5, y: -5)
-        }
+//        ZStack(alignment: .bottomLeading) {
+//            Image("turtlerock")
+//            Text("Hacking with Swift")
+//                .font(.footnote)
+//                .background(Color.black)
+//                .foregroundColor(.white)
+//                .offset(x: 5, y: -5)
+//        }
         
 //        VStack {
 //            Text("Home")
@@ -151,7 +151,20 @@ struct LayoutView: View {
 //                .background(Color.gray)
 //        }
         
-
+//        NavigationView {
+//            NavigationLink(destination: Text("Detail view here")) {
+//                Image("turtlerock")
+//            }
+//            .buttonStyle(PlainButtonStyle())
+//        }
+        
+        Button(action: {
+            // your action here
+        }) {
+            Image("turtlerock")
+//                .renderingMode(.original)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

@@ -7,10 +7,20 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct VideoView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VideoPlayer(player: AVPlayer(url:  URL(string: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!)) {
+            VStack {
+                Text("水印")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .background(Color.black.opacity(0.7))
+                    .clipShape(Capsule())
+                Spacer()
+            }
+        }
     }
 }
 
