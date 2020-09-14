@@ -34,12 +34,18 @@ struct TextTestView: View {
             1: LinearGradient 线性渐变
             2. RadialGradient 圆心渐变
             3. AngularGradient 圆锥渐变
+     
+     //检测用户鼠标是否悬停在某个视图上
+     修饰符：onHover()和hoverEffect()
+     onHover允许您跟踪指针当前是否悬停在视图上方，并传递一个反映该状态的布尔值。例如，根据指针是否悬停在文本上方，这将使某些文本变为红色或绿色：
+     注意：在iPadOS simulator进行测试, 点击菜单（I/O -> "Input" > 'Send Cursor to Device').
      */
     
     //将视图存储为属性
-
+    @State private var overText = false
     @State private var completionAmount: CGFloat = 0.0
     @State private var name = "Paul"
+    @State private var profileText: String = "TextEditor用于处理多行滚动文本的视图。您可以设置字体，根据需要更改颜色，甚至调整行距以及可以创建多少行。"
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let propertiesText = Text("propertiesText").font(.largeTitle)
@@ -192,11 +198,7 @@ struct TextTestView: View {
                             .blur(radius: 1)
                     }
                 }
-                                                
                 
-                    
-                
-                                                
                 VStack {
                     
     //iOS 14的新功能
@@ -240,12 +242,31 @@ struct TextTestView: View {
                         .textCase(.uppercase)//textCase()修饰符强制使用大写或小写文本。
                         .padding(.horizontal)
                     
-                    ZStack {
-                        ContainerRelativeShape()
-                            .inset(by: 4)
-                            .fill(Color.blue)
-                        Text("Hello, World!")
+//                    ZStack {
+//                        ContainerRelativeShape()
+//                            .inset(by: 4)
+//                            .fill(Color.blue)
+//                        Text("Hello, World!")
+//                            .font(.headline)
+//                    }
+                    VStack{
+                        Text("onHover")
+                            .foregroundColor(overText ? Color.green : Color.red)
                             .font(.headline)
+                            .onHover(perform: { hovering in
+                                self.overText = hovering
+                            })
+                        Text("Tap me!")
+                            .font(.largeTitle)
+                            .hoverEffect(.automatic)//.lift, .highlight,.automatic
+                            .onTapGesture {
+                                print("Text tapped")
+                            }
+                        //多行文本
+                        TextEditor(text: $profileText)
+                            .border(Color.black, width: 1)
+                            .cornerRadius(3.0)
+                            .foregroundColor(.red)
                     }
 
                 }.padding()

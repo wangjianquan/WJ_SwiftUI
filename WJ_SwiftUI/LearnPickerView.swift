@@ -14,7 +14,9 @@ struct LearnPickerView: View {
     @State private var selectedColor = 0
     @State private var birthDate = Date()
     @State private var favoriteColor = 0
-
+    @State private var date = Date()
+    @State private var bgColor = Color.white
+    
     var colors: [Color] = [.red,.gray,.green,.blue,.orange,.yellow,.pink,.purple]
 
     static var dateFormatter: DateFormatter {
@@ -23,20 +25,28 @@ struct LearnPickerView: View {
         return formatter
     }
     
-    
+
     var body: some View {
        
         NavigationView {
             VStack { //Form
                 VStack {
+                    //iOS 14的新功能
+                    ColorPicker("设置背景颜色", selection: $bgColor)
+                        .background(bgColor)
+                    
+                }.frame(maxWidth: .infinity, maxHeight: 100).background(bgColor)
+                VStack {
                     Picker(selection: $favoriteColor, label: Text("favorite color")) {
                         ForEach(0 ..< colors.count) { index in
                             Text(self.colors[index].description.capitalized)
-                               }
-                           }.pickerStyle(SegmentedPickerStyle())
-                           Text("value:\(favoriteColor)")
-                       }
-                       
+                        }
+                    }
+                    //UISegmentedControl与UIKit 等效的分段控件
+                    .pickerStyle(SegmentedPickerStyle())
+                    Text("value:\(favoriteColor)")
+                }
+//
                 VStack {
                     Picker(selection: $selectedColor, label: Text("choose colors")) {
                         ForEach (0 ..< colors.count) {
@@ -53,14 +63,23 @@ struct LearnPickerView: View {
                         .font(.title)
                         .foregroundColor(colors[selectedColor])
                     }
-                    Spacer().frame(height:15)
+//                    Spacer().frame(height:15)
+                
                 VStack {
-                       //displayedComponents: 日期格式，.hourAndMinute
-                       //in: ...Date():当前日期之前可选 或者 Date()...：当前日期以后可选
-                       DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
-                           Text("日期")
-                    }
-                    Text("Date is \(birthDate, formatter: LearnPickerView.dateFormatter)")
+                    //displayedComponents: 日期格式，.hourAndMinute
+                    //in: ...Date():当前日期之前可选 或者 Date()...：当前日期以后可选
+                    DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
+                        Text("日期")
+                    }.background(Color.red)
+                    Text("生日: \(birthDate, formatter: LearnPickerView.dateFormatter)")
+                    Divider()
+//                    Text("请选择日期")
+//                        .font(.largeTitle)
+//                    DatePicker("Enter your birthday", selection: $date)
+//                        .datePickerStyle(GraphicalDatePickerStyle())//iOS 14
+//                        .frame(height: 375)
+                    
+
                 }
             }
              .navigationBarTitle("表单 Form", displayMode: .inline)

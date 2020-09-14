@@ -10,39 +10,15 @@ import SwiftUI
 
 struct ContentView: View {
     let user = User(name: "Jack", jobTitle: "teacher", emailAddress: "939730129@qq.com", profilePicture: "strawberry-cooler-thumb")
+    @EnvironmentObject var settings: UserSettings
 
     var body: some View {
             NavigationView {
-                UserView(user: user)
-
-//                List {
-//                    Text("用‘+’实现文本拼接：")
-//                    +
-//                    Text("SwiftUI  ")
-//                        .font(.largeTitle)//标题样式
-//                        .foregroundColor(.orange)
-//                        .kerning(1)//字符间距
-//                        .baselineOffset(10)
-//                        .strikethrough(true, color: .red)
-//                    +
-//                    Text("is  ")
-//                        .font(.subheadline)
-//                        .fontWeight(.black)
-//
-//                        .foregroundColor(.blue)
-//                        .underline(true, color: .red)
-//                        .tracking(1)
-//                    +
-//                    Text("awesome")
-//                        .font(.footnote)
-//                        .foregroundColor(.red)
-//    //                Spacer()
-//                }
+                List {
+                    UserView(user: user)
+                }
                 .navigationBarTitle("Menu", displayMode: NavigationBarItem.TitleDisplayMode.automatic)
             }
-           
-            
-            
         }
 }
 

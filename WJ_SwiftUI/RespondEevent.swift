@@ -18,7 +18,8 @@ struct RespondEevent: View {
     @State private var name: String = ""//有值时为默认文字， 为空字符串时是占位文字
     @State private var password: String = ""
     @State private var celsius: Double = 0
-   
+    var settings = UserSettings()
+
     let colors: [Color] = [.red,.gray,.green,.blue,.orange,.yellow,.pink,.purple,.primary,.secondary]
     @State private var selectedColor = 0
     
@@ -92,7 +93,7 @@ struct RespondEevent: View {
                         //in：滑块的范围。
                         //step：移动滑块时要更改多少值。
                         Slider(value: $celsius, in: -100...100, step: 0.1)
-                        Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
+                        Text("\(celsius) Celsius is \(celsius) Fahrenheit")
                     }
 
                     Section(header: Text("控件: Stepper")) {
@@ -161,8 +162,17 @@ struct RespondEevent: View {
                             Text("VideoPlayer")
                         }.buttonStyle(PlainButtonStyle())
                     }
-                    
-                    
+                    Section(header:Text("手势 GestureView" )) {
+                        NavigationLink(destination:GestureView()) {
+                            Text("GestureView")
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+                    Section(header:Text("环境对象使用" )) {
+                        NavigationLink(destination:LearnEnvironmentObject().environmentObject(settings)) {
+                            Text("GestureView")
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+
                 }
             }
             .navigationBarTitle("响应事件 @State", displayMode: .inline)

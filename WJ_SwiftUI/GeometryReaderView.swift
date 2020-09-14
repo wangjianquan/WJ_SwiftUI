@@ -8,6 +8,8 @@
 //GeometryReader在视图层次结构中没有考虑任何偏移或间距
 //如何使用labelsHidden（）隐藏Picker，Stepper，Toggle等标签?
 //提示：如果要隐藏所有标签，则可以将labelsHidden()修饰符应用于VStack或用作最外层容器的任何内容。
+
+//如何使用objectWillChange手动发送状态更新
 import SwiftUI
 
 struct GeometryReaderView: View {

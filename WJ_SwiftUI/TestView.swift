@@ -13,10 +13,11 @@ struct TestView: View {
     @State private var showingSheet = false
     @State private var showingAlert = false
     @State var showingDetail = false
+    @State private var tipAmount: String = ""
 
     var body: some View {
         VStack (spacing:15) {
-            
+
             Button(action: {
                 self.showingDetail.toggle()
             }) {
@@ -36,7 +37,7 @@ struct TestView: View {
 
                 })])
             }
-            
+
             Button(action: {
                 self.showingAlert = true
             }) {
@@ -46,10 +47,32 @@ struct TestView: View {
                    print("Deleting...")
                 }, secondaryButton: .cancel())
             }
-            
-            
-            
+            VStack {
+               TextField("Name: ", text: $tipAmount)
+                   .textFieldStyle(RoundedBorderTextFieldStyle())
+                   .keyboardType(.decimalPad)
+
+               Button("Submit") {
+                print("Tip: \(self.tipAmount)")
+                self.hideKeyboard()
+               }
+           }
+            ZStack {
+                Button("Tap Me") {
+                    print("Button was tapped")
+                }
+                .frame(width: 100, height: 100)
+                .background(Color.red)
+
+                Rectangle()
+                    .fill(Color.red.opacity(0.2))
+                    .frame(width: 300, height: 300)
+                    .clipShape(Circle())
+                    .allowsHitTesting(false)
+            }
+
         }.padding()
+
     }
 }
 
