@@ -29,7 +29,7 @@ struct LearnPickerView: View {
     var body: some View {
        
         NavigationView {
-            VStack { //Form
+            Form { //Form
                 VStack {
                     //iOS 14的新功能
                     ColorPicker("设置背景颜色", selection: $bgColor)

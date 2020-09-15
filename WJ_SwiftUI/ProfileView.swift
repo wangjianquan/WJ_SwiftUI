@@ -66,9 +66,16 @@ struct UserView: View {
     }
 }
 
+struct TaskRow: View {
+    var body: some View {
+        Text("Task data goes here")
+    }
+}
+
 struct ProfileView: View {
    
     let user = User(name: "Jack", jobTitle: "teacher", emailAddress: "939730129@qq.com", profilePicture: "strawberry-cooler-thumb")
+    @State private var dataSource = [".red",".gray",".green",".blue",".orange",".yellow",".pink",".purple"]
     
     var body: some View {
         NavigationView{
@@ -78,19 +85,34 @@ struct ProfileView: View {
                         .shadow(radius: 5)
 //                        .background(Color.blue)
                     List {
-                        ForEach (0 ..< 23) {
-                            Text("\($0)")
+                        
+                        //1.侧滑删除崩溃
+//                        ForEach(0 ..< dataSource.count) { index in
+//                            Text(dataSource[index])
+//                        }.onDelete(perform: { indexSet in
+//                            delete(at: indexSet)
+//                        })
+                        
+                        //2.不奔溃
+                        ForEach(dataSource, id: \.self) { dataSource in
+                            Text(dataSource)
                         }
+                        .onDelete(perform: { indexSet in
+                            delete(at: indexSet)
+                        })
+                        .onMove(perform: { indices, newOffset in
+                            dataSource.move(fromOffsets: indices, toOffset: newOffset)
+                        })
+                        
+                        
                     }
+                    .listStyle(GroupedListStyle())//分组样式
 
-                }
+                }.background(Color.red)
 
+            
             .navigationBarTitle("个人中心", displayMode: .inline)
-            .navigationBarItems(leading: Button(action: {
-                
-                }) {
-                    Image(systemName: "list.dash")
-                }, trailing:
+            .navigationBarItems(leading: EditButton(), trailing:
                     HStack {
                         Button("About") {
                             print("About tapped!")
@@ -101,8 +123,18 @@ struct ProfileView: View {
                             Image(systemName: "list.dash")
                         }
                 })
-            }
+        }
     }
+    
+    func delete(at offsets:IndexSet ){
+        dataSource.remove(atOffsets: offsets)
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        dataSource.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    
 }
 
 struct ProfileView_Previews: PreviewProvider {

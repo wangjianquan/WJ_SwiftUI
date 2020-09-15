@@ -42,7 +42,10 @@ struct TextTestView: View {
      */
     
     //将视图存储为属性
+    @State private var timeRemaining = 60
+    @State private var timeName: String = "获取验证码"
     @State private var overText = false
+    @State private var showingDetail = false
     @State private var completionAmount: CGFloat = 0.0
     @State private var name = "Paul"
     @State private var profileText: String = "TextEditor用于处理多行滚动文本的视图。您可以设置字体，根据需要更改颜色，甚至调整行距以及可以创建多少行。"
@@ -123,6 +126,28 @@ struct TextTestView: View {
                 }
                 
                 Group {
+//                    Section {
+                        Text("菜单项")
+                            .foregroundColor(.blue)
+                            .contextMenu {
+                                
+                                Button(action: {
+                                    self.showingDetail.toggle()
+                                }) {
+                                    Text("Choose Country")
+                                    Image(systemName: "globe")
+                                }.sheet(isPresented: $showingDetail) {
+                                    FormView()
+                                }
+
+                                Button(action: {
+                                    // enable geolocation
+                                }) {
+                                    Text("Detect Location")
+                                    Image(systemName: "location.circle")
+                                }
+                            }
+//                    }
                     HStack {
                         Text("border")
                             .padding()
@@ -196,6 +221,7 @@ struct TextTestView: View {
                         Text("高斯模糊 .blur")
                             .background(Color.red)
                             .blur(radius: 1)
+
                     }
                 }
                 
@@ -267,6 +293,34 @@ struct TextTestView: View {
                             .border(Color.black, width: 1)
                             .cornerRadius(3.0)
                             .foregroundColor(.red)
+                        
+                        Button(action: {
+                            
+
+                        }, label: {
+                            Text("\(timeRemaining)")
+                                .foregroundColor(.primary)
+//                                .font(.largeTitle)
+                                .padding()
+                                .clipShape(Capsule())
+                                .background(Color.orange)
+                        }).onReceive(timer, perform: { _ in
+                            if self.timeRemaining > 0 {
+                                self.timeRemaining -= 1
+                            }
+                        })
+                        .clipShape(Capsule())
+                        
+//                        Text("获取验证码 \(timeRemaining)")
+                        Text("\(timeName)")
+                            .onReceive(timer, perform: { _ in
+                                if self.timeRemaining > 0 {
+                                    self.timeRemaining -= 1
+                                    timeName = "获取验证码 \(timeRemaining)"
+                                }else{
+                                    timeName = "重新获取"
+                                }
+                        })
                     }
 
                 }.padding()

@@ -71,12 +71,15 @@ struct ScrollTestView: View {
 ////            .frame(height:200)
 //            .background(Color.green)
 //        }
+        
+        //4. 滚动到指定位置 scrollTo
 //        ScrollView(.vertical, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
 //            if #available(iOS 14.0, *) {
 //                ScrollViewReader(content: { proxy in
 //                    Button("jump to #8") {
-////                        proxy.scrollTo(8)
-//                        proxy.scrollTo(8, anchor: .top)
+//                        withAnimation {
+//                            proxy.scrollTo(8, anchor: .top)
+//                        }
 //                    }
 //                    ForEach(0..<10) { i in
 //                        Text("Example \(i)").frame(width: 100, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
@@ -87,6 +90,8 @@ struct ScrollTestView: View {
 //            } else {
 //            }
 //        })
+        
+        //5. 懒加载 LazyHStack
 //        ScrollView(.horizontal) {
 //            LazyHStack( content: {
 //                ForEach(1...1000, id: \.self) { count in
@@ -100,6 +105,7 @@ struct ScrollTestView: View {
 //            }).background(Color.orange)
 //        }.background(Color.yellow)
         
+        //6. 懒加载 LazyVStack
         ScrollView(.vertical, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
             LazyVStack {
                 ForEach(1...1000, id: \.self) { value in

@@ -158,16 +158,51 @@ struct LayoutView: View {
 //            .buttonStyle(PlainButtonStyle())
 //        }
         
-        Button(action: {
-            // your action here
-        }) {
-            Image("turtlerock")
-//                .renderingMode(.original)
+//        Button(action: {
+//            // your action here
+//        }) {
+//            Image("turtlerock")
+////                .renderingMode(.original)
+//        }
+//        .buttonStyle(PlainButtonStyle())
+        
+        //ToolbarItem
+        NavigationView {
+            Text("Hello, World!")
+                .navigationTitle("SwiftUI")
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack {
+                            Button("First") {
+                                print("Pressed")
+                            }
+
+                            Button("Second") {
+                                print("Pressed")
+                            }
+                            Button("third") {
+                                print("Pressed")
+                            }
+                        }
+                    }
+                }
         }
-        .buttonStyle(PlainButtonStyle())
+        
+        //为iPadOS添加侧边栏,切换时iPad模拟器
+//        NavigationView {
+//            Sidebar()
+//            FormView()
+//        }
     }
 }
-
+struct Sidebar: View {
+    var body: some View {
+        List(1..<100) { i in
+            Text("Row \(i)")
+        }
+        .listStyle(SidebarListStyle())
+    }
+}
 struct LayoutView_Previews: PreviewProvider {
     static var previews: some View {
         LayoutView()
