@@ -8,6 +8,17 @@
 
 import SwiftUI
 
+//自定义修饰符 (可以用于导航文字或一级/二级固定标题)
+struct PrimaryLabel: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(Color.red)
+            .foregroundColor(Color.white)
+            .font(.largeTitle)
+    }
+}
+
 struct TextTestView: View {
    /*
       *
@@ -27,6 +38,7 @@ struct TextTestView: View {
         .strikethrough(true, color: .red) //横线
         .clipShape(Capsule())   //圆角
         .cornerRadius(25)       //圆角: 任意大小的圆角
+        .contextMenu{}          //菜单项（长按）可以添加任何SwiftUI视图，此处仅以Text控件为例
         //文本视图的渐变背景
         .background(LinearGradient(gradient: Gradient(colors: [.blue,.green]), startPoint: .topLeading, endPoint: .bottomTrailing))
     
@@ -46,6 +58,7 @@ struct TextTestView: View {
     @State private var timeName: String = "获取验证码"
     @State private var overText = false
     @State private var showingDetail = false
+    @State private var phase: CGFloat = 0
     @State private var completionAmount: CGFloat = 0.0
     @State private var name = "Paul"
     @State private var profileText: String = "TextEditor用于处理多行滚动文本的视图。您可以设置字体，根据需要更改颜色，甚至调整行距以及可以创建多少行。"
@@ -65,6 +78,13 @@ struct TextTestView: View {
         NavigationView{
             List {
                 Group {
+
+                    Text("Hello, SwiftUI")
+                        .modifier(PrimaryLabel())
+                    Text("EPISODE LLVM")
+                        .font(.largeTitle)
+                        .foregroundColor(.yellow)
+                        .rotation3DEffect(.degrees(45), axis: (x: 1, y: 0, z: 0))
                     Text("文本视图默认会自动换行，限制行数则添加lineLimit修饰符")
                         .font(.system(size: 17))
                         .fontWeight(.bold)
@@ -126,7 +146,13 @@ struct TextTestView: View {
                 }
                 
                 Group {
-//                    Section {
+                    Text("Hello ") + Text(Image(systemName: "star")) + Text(" World!")
+                   (Text("Hello ") + Text(Image(systemName: "star")) + Text(" World!"))
+                        .foregroundColor(.blue)
+                        .font(.largeTitle)
+                    Text("Hello ") + Text(Image(systemName: "star")) + Text(" World!")
+                        .foregroundColor(.blue)
+                        .font(.largeTitle)
                         Text("菜单项")
                             .foregroundColor(.blue)
                             .contextMenu {
@@ -147,7 +173,6 @@ struct TextTestView: View {
                                     Image(systemName: "location.circle")
                                 }
                             }
-//                    }
                     HStack {
                         Text("border")
                             .padding()
@@ -188,6 +213,8 @@ struct TextTestView: View {
                                 .background(Color.green)
                                 .clipShape(Capsule())
                         }
+                        Rectangle()
+                            .strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10]))
                         Circle()
                             .fill(Color.blue)
                             .frame(width: 50, height: 50)
@@ -208,11 +235,16 @@ struct TextTestView: View {
                                 withAnimation {
                                     guard self.completionAmount < 1 else { return }
                                     self.completionAmount += 0.2
-                                }
-                        }
+                                }}
+                        
                     }
-                    
+                    Rectangle()
+                        .strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10], dashPhase: phase))
+                        .frame(width: 200, height: 200)
+                        .onAppear { self.phase -= 20 }
+                        .animation(Animation.linear.repeatForever(autoreverses: false))
                     HStack {
+
                         Text(".cornerRadius, .opacity")
                             .padding()
                             .background(Color.red)
@@ -226,8 +258,7 @@ struct TextTestView: View {
                 }
                 
                 VStack {
-                    
-    //iOS 14的新功能
+                    //iOS 14的新功能
 
                     HStack {
                         Label("Your account", systemImage: "person.crop.circle")

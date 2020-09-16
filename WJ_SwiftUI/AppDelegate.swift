@@ -4,7 +4,10 @@
 //
 //  Created by jieyue on 2019/10/12.
 //  Copyright © 2019 wjq. All rights reserved.
-//
+
+
+
+//  Option-Cmd-P键使预览窗口立即重新加载
 
 import UIKit
 

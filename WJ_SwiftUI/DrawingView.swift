@@ -8,7 +8,8 @@
 
 import SwiftUI
 
-struct SpiroSquare: Shape {
+struct SpiroSquare: Shape {//符合绘制自定义路径Shape协议
+    //绘制自定义路径
     func path(in rect: CGRect) -> Path {
         var path      = Path()
         let rotations = 5

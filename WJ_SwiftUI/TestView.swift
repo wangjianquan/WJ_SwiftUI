@@ -7,18 +7,74 @@
 //
 
 import SwiftUI
+struct FullScreenModalView: View {
+    //模态视图 diss秘书https://www.hackingwithswift.com/quick-start/swiftui/how-to-make-a-view-dismiss-itself
+    //
+    @Environment(\.presentationMode) var presentationMode
 
+    var body: some View {
+        VStack {
+            HStack(spacing: nil, content: {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+
+                }, label: {
+                    Text("close")
+                        .background(Color.black)
+                })
+                .offset(x: 20, y: 22)
+            
+                .frame(maxWidth: 44, maxHeight: 44)
+                Spacer()
+            })
+            
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.red)
+        .edgesIgnoringSafeArea(.all)
+        .onTapGesture {
+            presentationMode.wrappedValue.dismiss()
+        }
+        
+    }
+}
 struct TestView: View {
     let imageNames = ["all-out-donuts-thumb", "corn-on-the-cob-thumb","full-english-thumb"]
+    
+    @State var showingDetail = false
+    @State private var isPresented = false
     @State private var showingSheet = false
     @State private var showingAlert = false
-    @State var showingDetail = false
+    @State private var showRecommended = false
     @State private var tipAmount: String = ""
 
     var body: some View {
         VStack (spacing:15) {
-
+            Menu("专用于按钮的弹出菜单") { //和 .contextMenu的区别
+                Button("Order Now"){}
+                Button("Adjust Order"){}
+                Menu("二级菜单") {
+                    Button("Rename"){}
+                    Button("Delay"){}
+                }
+                
+            }
+            
+            Menu {
+                Button("Order Now"){}
+                Button("Adjust Order"){}
+            } label: {
+                Label("Menu", systemImage: "paperplane")
+            }
+            
             Divider()
+            //全屏modal
+            Button("isPresented -> fullScreenCover") {
+                self.isPresented.toggle()
+            }
+            .fullScreenCover(isPresented: $isPresented, content: FullScreenModalView.init)
+
             Button(action: {
                 self.showingDetail.toggle()
             }) {
@@ -75,6 +131,8 @@ struct TestView: View {
         }.padding()
 
     }
+    
+    
 }
 
 struct TestView_Previews: PreviewProvider {

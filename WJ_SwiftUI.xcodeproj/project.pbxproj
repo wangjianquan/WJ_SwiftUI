@@ -11,6 +11,7 @@
 		121B0E7A250786D4008CEE95 /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B0E79250786D4008CEE95 /* AdaptiveStack.swift */; };
 		121B0E7C2507935D008CEE95 /* ScrollTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B0E7B2507935D008CEE95 /* ScrollTestView.swift */; };
 		125587E825088A0000433002 /* GridStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125587E725088A0000433002 /* GridStackView.swift */; };
+		12699F1025120CED00B7031F /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12699F0F25120CED00B7031F /* CustomTextView.swift */; };
 		12734AE02508B6D100EE6579 /* LearnLazyGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12734ADF2508B6D100EE6579 /* LearnLazyGrid.swift */; };
 		12BD599D250F249D00A46B66 /* GestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BD599C250F249D00A46B66 /* GestureView.swift */; };
 		12BD599F250F567D00A46B66 /* ProgressTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BD599E250F567D00A46B66 /* ProgressTestView.swift */; };
@@ -64,6 +65,7 @@
 		121B0E79250786D4008CEE95 /* AdaptiveStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStack.swift; sourceTree = "<group>"; };
 		121B0E7B2507935D008CEE95 /* ScrollTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTestView.swift; sourceTree = "<group>"; };
 		125587E725088A0000433002 /* GridStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStackView.swift; sourceTree = "<group>"; };
+		12699F0F25120CED00B7031F /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		12734ADF2508B6D100EE6579 /* LearnLazyGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnLazyGrid.swift; sourceTree = "<group>"; };
 		12BD599C250F249D00A46B66 /* GestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureView.swift; sourceTree = "<group>"; };
 		12BD599E250F567D00A46B66 /* ProgressTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTestView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				5D5B08EB2355A9EB0042448F /* LearnPickerView.swift */,
 				12BD599E250F567D00A46B66 /* ProgressTestView.swift */,
 				5D45C6B92356CE9A00F84E24 /* FormView.swift */,
+				12699F0F25120CED00B7031F /* CustomTextView.swift */,
 				121B0E79250786D4008CEE95 /* AdaptiveStack.swift */,
 				121B0E7B2507935D008CEE95 /* ScrollTestView.swift */,
 				125587E725088A0000433002 /* GridStackView.swift */,
@@ -373,6 +376,7 @@
 				5D45C6BA2356CE9A00F84E24 /* FormView.swift in Sources */,
 				5DE2EE7B235998E8000BC4AA /* LearnAnimation.swift in Sources */,
 				5DE2EE79235992DC000BC4AA /* DrawingView.swift in Sources */,
+				12699F1025120CED00B7031F /* CustomTextView.swift in Sources */,
 				12734AE02508B6D100EE6579 /* LearnLazyGrid.swift in Sources */,
 				5DA9D5182351B4B900A6AA8B /* ContentView.swift in Sources */,
 				5D4E6BE223584FF30094FF10 /* LearningTransform.swift in Sources */,

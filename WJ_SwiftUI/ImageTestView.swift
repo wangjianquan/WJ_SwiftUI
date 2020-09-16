@@ -5,13 +5,26 @@
 //  Created by jieyue on 2019/10/12.
 //  Copyright © 2019 wjq. All rights reserved.
 //
-
+/*
+ .mask()                用于彼此掩盖视图的
+ .blur(radius: 3.0)     高斯模糊
+ .blendMode(.multiply)  视图融合在
+ .colorMultiply()       为图像视图着色
+ .saturation(0.5)       饱和度调整（0.0 - 1.0）
+ .contrast(10)          动态调整视图的对比度
+ 
+ 
+ 如何使用matchedGeometryEffect（）将动画从一个视图同步到另一个视图
+ 
+ */
 import SwiftUI
 
 struct ImageTestView: View {
     let colors = Gradient(colors: [.red, .yellow, .green, .blue, .purple])
 //    let conic = RadialGradient(gradient: colors, center: .center, startRadius: 50, endRadius: 200)
 
+
+    
     var body: some View {
         
         List{
@@ -44,7 +57,7 @@ struct ImageTestView: View {
                 }
             }
 
-            Section(header: Text("高斯模糊 (.blur())").blur(radius: 1)){
+            Section(header: Text("高斯模糊 (.blur())").blur(radius: 0.5)){
                 Image("full-english")
                     .resizable()
                     .blur(radius: 5)
@@ -53,7 +66,8 @@ struct ImageTestView: View {
             Section(header:Text("视图遮罩 .mask()")){
                 Image("turtlerock")
                     .resizable()
-                    .mask(Text("遮罩.mask()").font(Font.system(size: 80).weight(.regular))
+                    .mask(Text("遮罩.mask()")
+                            .font(Font.system(size: 80).weight(.regular))
                 )
             }
             
@@ -74,6 +88,9 @@ struct ImageTestView: View {
                 .foregroundColor(.blue)
                 .font(.largeTitle)
             }
+
+                        
+
             
 //            Spacer()
         }
